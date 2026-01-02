@@ -14,5 +14,40 @@ module Btree
 
     def initialize(@value, @left = nil, @right = nil)
     end
+
+    def level_order
+      queue = Deque.new([self])
+      result = Array(T).new
+
+      while queue.size > 0
+        node = queue.shift
+        result << node.value
+
+        if left = node.left
+          queue << left
+        end
+        if right = node.right
+          queue << right
+        end
+      end
+
+      result
+    end
+
+    def pre_order
+      result = Array(T).new
+      internal_pre_order(result, self)
+      result
+    end
+
+    private def internal_pre_order(result : Array(T), parent : Node(T)?)
+      if parent.nil?
+        return
+      end
+
+      result << parent.value
+      internal_pre_order(result, parent.left)
+      internal_pre_order(result, parent.right)
+    end
   end
 end
