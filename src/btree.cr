@@ -1,18 +1,18 @@
 module Btree
   class Node(T)
-    property shu : T
-    property zuo : self?
-    property you : self?
+    property value : T
+    property left : self?
+    property right : self?
 
-    def self.[](gen, zuo, you)
-      zuo_node = new(zuo)
-      you_node = new(you)
-      gen_node = new(gen, zuo_node, you_node)
+    def self.[](parent, left, right)
+      left_node = new(left)
+      right_node = new(right)
+      parent_node = new(parent, left_node, right_node)
 
-      {gen_node, zuo_node, you_node}
+      {parent_node, left_node, right_node}
     end
 
-    def initialize(@shu, @zuo = nil, @you = nil)
+    def initialize(@value, @left = nil, @right = nil)
     end
   end
 end
