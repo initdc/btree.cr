@@ -49,5 +49,37 @@ module Btree
       internal_pre_order(result, parent.left)
       internal_pre_order(result, parent.right)
     end
+
+    def in_order
+      result = Array(T).new
+      internal_in_order(result, self)
+      result
+    end
+
+    private def internal_in_order(result : Array(T), parent : Node(T)?)
+      if parent.nil?
+        return
+      end
+
+      internal_in_order(result, parent.left)
+      result << parent.value
+      internal_in_order(result, parent.right)
+    end
+
+    def post_order
+      result = Array(T).new
+      internal_post_order(result, self)
+      result
+    end
+
+    private def internal_post_order(result : Array(T), parent : Node(T)?)
+      if parent.nil?
+        return
+      end
+
+      internal_post_order(result, parent.left)
+      internal_post_order(result, parent.right)
+      result << parent.value
+    end
   end
 end

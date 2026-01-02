@@ -33,4 +33,14 @@ describe Btree do
     root.pre_order.should eq [1, 2, 4, 5, 3, 6, 7]
     left.pre_order.should eq [2, 4, 5]
   end
+
+  it "in_order" do
+    root.in_order.should eq [4, 2, 5, 1, 6, 3, 7]
+    left.in_order.should eq [4, 2, 5]
+  end
+
+  it "post_order" do
+    root.post_order.should eq [4, 5, 2, 6, 7, 3, 1]
+    left.post_order.should eq [4, 5, 2]
+  end
 end
