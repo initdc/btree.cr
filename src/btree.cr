@@ -35,6 +35,31 @@ module Btree
     end
 
     def pre_order
+      stack = Deque.new([self])
+      result = Array(T).new
+
+      while stack.size > 0
+        puts
+        print stack.map { |x| x.value }
+        node = stack.pop
+        print " -", node.value, " "
+        result << node.value
+
+        if right = node.right
+          stack << right
+          print " +", right.value, " "
+        end
+        if left = node.left
+          stack << left
+          print " +", left.value, " "
+        end
+      end
+      puts
+
+      result
+    end
+
+    def recur_pre_order
       result = Array(T).new
       internal_pre_order(result, self)
       result
