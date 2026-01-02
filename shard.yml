@@ -1,0 +1,9 @@
+name: btree
+version: 0.1.0
+
+authors:
+  - initdc <initd@outlook.com>
+
+crystal: '>= 1.18.2'
+
+license: MIT
