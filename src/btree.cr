@@ -34,7 +34,7 @@ module Btree
       result
     end
 
-    def pre_order
+    def stack_pre_order
       stack = Deque.new([self])
       result = Array(T).new
 
@@ -55,6 +55,28 @@ module Btree
         end
       end
       puts
+
+      result
+    end
+
+    def pre_order
+      queue = Deque.new([self])
+      result = Array(T).new
+
+      node = queue.pop
+      while node
+        result << node.value
+
+        if right = node.right
+          queue << right
+        end
+
+        if left = node.left
+          node = left
+        else
+          node = queue.pop?
+        end
+      end
 
       result
     end
