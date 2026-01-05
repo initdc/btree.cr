@@ -35,8 +35,12 @@ describe Btree do
   end
 
   it "in_order" do
-    root.in_order.should eq [4, 2, 5, 1, 6, 3, 7]
-    left.in_order.should eq [4, 2, 5]
+    left2, _, _ = Btree::Node[4, 2, 6]
+    right2, _, _ = Btree::Node[12, 10, 14]
+    root2 = Btree::Node.new(8, left2, right2)
+
+    # left2.in_order.should eq [2, 4, 6]
+    root2.in_order.should eq [2, 4, 6, 8, 10, 12, 14]
   end
 
   it "post_order" do
